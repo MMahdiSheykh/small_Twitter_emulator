@@ -1,18 +1,20 @@
 package org.maktab.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.experimental.FieldDefaults;
+import javax.persistence.*;
 
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue
-    private int id;
-    private String username;
-    private String nationalCode;
-    private String birthday;
-    private String password;
+    int id;
+    String username;
+    String nationalCode;
+    String birthday;
+    String password;
 }

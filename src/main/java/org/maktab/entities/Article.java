@@ -1,19 +1,22 @@
 package org.maktab.entities;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "articles")
 public class Article {
     @Id
     @GeneratedValue
-    private int id;
-    private String title;
-    private String brief;
-    private String content;
-    private String createdDate;
-    private boolean isPublished;
-    private int user_id;
+    int id;
+    String title;
+    String brief;
+    String content;
+    String createdDate;
+    boolean isPublished;
+    int user_id;
 }

@@ -12,13 +12,13 @@ public class UserService {
     public User createUser(){
         User user = new User();
 
-        System.out.print("Please enter your username : ");
+        System.out.print("\nPlease enter your username : ");
         user.setUsername(scanner.next());
         System.out.print("Please enter your password : ");
         user.setPassword(scanner.next());
         System.out.print("Please enter your national code : ");
         user.setNationalCode(scanner.next());
-        System.out.print("Please enter your birthday");
+        System.out.print("Please enter your birthday : ");
         user.setBirthday(scanner.next());
 
         userRepository.createUser(user);

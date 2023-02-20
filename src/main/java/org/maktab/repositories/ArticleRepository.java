@@ -3,7 +3,6 @@ package org.maktab.repositories;
 import org.hibernate.Session;
 import org.maktab.dbConnection.DbConnection;
 import org.maktab.entities.Article;
-import org.maktab.entities.User;
 
 public class ArticleRepository {
 

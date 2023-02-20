@@ -16,10 +16,9 @@ public class DbConnection {
             synchronized (DbConnection.class) {
                 if (instance == null) {
                     Configuration configObj = new Configuration();
-                    configObj.configure("hibernate.cfg.xml");
 
                     ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder()
-                            .applySettings(configObj.getProperties()).build();
+                            .configure("hibernate.cfg.xml").build();
 
                     instance = configObj.buildSessionFactory(serviceRegistryObj);
                 }

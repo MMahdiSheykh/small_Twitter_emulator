@@ -11,12 +11,13 @@ import javax.persistence.*;
 @Table(name = "articles")
 public class Article {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String title;
     String brief;
     String content;
     String createdDate;
     boolean isPublished;
-    int user_id;
+    @ManyToOne
+    User user;
 }

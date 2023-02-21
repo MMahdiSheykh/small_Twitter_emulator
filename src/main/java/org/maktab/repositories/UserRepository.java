@@ -33,6 +33,7 @@ public class UserRepository {
             session = DbConnection.buildSessionFactory().openSession();
             session.beginTransaction();
             userList = session.createQuery("FROM User").getResultList();
+            session.getTransaction().commit();
         } catch (Exception sqlExeption) {
             System.out.println("\n..........Transaction is being rolled back..........\n");
             session.getTransaction().rollback();
@@ -40,8 +41,26 @@ public class UserRepository {
             if (session != null) {
                 session.close();
             }
-            return userList;
-
         }
+        return userList;
+    }
+
+    public User updatePassword(User user, String password) {
+        Session session = null;
+        try {
+            session = DbConnection.buildSessionFactory().openSession();
+            session.getTransaction();
+            user.setPassword(password);
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception sqlExeption) {
+            System.out.println("\n..........Transaction is being rolled back..........\n");
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return user;
     }
 }

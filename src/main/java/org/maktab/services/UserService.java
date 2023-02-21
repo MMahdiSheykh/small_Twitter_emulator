@@ -2,28 +2,18 @@ package org.maktab.services;
 
 import org.maktab.entities.User;
 import org.maktab.repositories.UserRepository;
-
+import org.maktab.utils.LoginAndSignupUtils;
 import java.util.List;
-import java.util.Scanner;
 
 public class UserService {
-    Scanner scanner = new Scanner(System.in);
     UserRepository userRepository = new UserRepository();
+    LoginAndSignupUtils loginAndSignupUtils = new LoginAndSignupUtils();
 
     public User createUser(){
-        User user = new User();
 
-        System.out.print("\nPlease enter your username : ");
-        user.setUsername(scanner.next());
-        System.out.print("Please enter your password : ");
-        user.setPassword(scanner.next());
-        System.out.print("Please enter your national code : ");
-        user.setNationalCode(scanner.next());
-        System.out.print("Please enter your birthday : ");
-        user.setBirthday(scanner.next());
+        User user = loginAndSignupUtils.userSignup();
 
-        userRepository.createUser(user);
-        return user;
+        return userRepository.createUser(user);
     }
 
     public List<User> findAll(){

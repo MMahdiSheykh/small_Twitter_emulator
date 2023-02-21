@@ -3,6 +3,7 @@ package org.maktab.services;
 import org.maktab.entities.User;
 import org.maktab.repositories.UserRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserService {
@@ -23,5 +24,9 @@ public class UserService {
 
         userRepository.createUser(user);
         return user;
+    }
+
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 }

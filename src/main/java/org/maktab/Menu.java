@@ -10,6 +10,7 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
     UserService userService = new UserService();
     ArticleService articleService = new ArticleService();
+    User currentUser;
 
     public void welcomeMenu() {
 

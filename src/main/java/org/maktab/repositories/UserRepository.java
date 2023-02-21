@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.maktab.dbConnection.DbConnection;
 import org.maktab.entities.User;
 
+import java.util.List;
+
 public class UserRepository {
 
     public User createUser(User user) {
@@ -22,5 +24,24 @@ public class UserRepository {
             }
         }
         return user;
+    }
+
+    public List<User> findAll() {
+        Session session = null;
+        List<User> userList = null;
+        try {
+            session = DbConnection.buildSessionFactory().openSession();
+            session.beginTransaction();
+            userList = session.createQuery("FROM User").getResultList();
+        } catch (Exception sqlExeption) {
+            System.out.println("\n..........Transaction is being rolled back..........\n");
+            session.getTransaction().rollback();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+            return userList;
+
+        }
     }
 }

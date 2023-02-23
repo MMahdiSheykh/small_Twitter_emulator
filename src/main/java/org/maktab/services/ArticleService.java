@@ -3,6 +3,8 @@ package org.maktab.services;
 import org.maktab.entities.Article;
 import org.maktab.entities.User;
 import org.maktab.repositories.ArticleRepository;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class ArticleService {
@@ -24,5 +26,9 @@ public class ArticleService {
 
         articleRepository.createArticle(article);
         return article;
+    }
+
+    public List<Article> findByUser(){
+        return articleRepository.findByUser();
     }
 }

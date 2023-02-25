@@ -28,7 +28,15 @@ public class ArticleService {
         return article;
     }
 
-    public List<Article> findByUser(){
-        return articleRepository.findByUser();
+    public List<Article> findAllArticles(){
+        return articleRepository.findAllArticles();
+    }
+
+    public Article findByTitle(String title){
+        return articleRepository.findByTitle(title);
+    }
+
+    public void updateArticle(Article editedArticle){
+        articleRepository.editArticle(editedArticle);
     }
 }

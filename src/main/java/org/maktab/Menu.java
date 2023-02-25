@@ -1,5 +1,6 @@
 package org.maktab;
 
+import org.maktab.entities.Article;
 import org.maktab.entities.User;
 import org.maktab.services.ArticleService;
 import org.maktab.services.UserService;
@@ -40,7 +41,8 @@ public class Menu {
                         loginMenu(currentUser);
                         break;
                     case 3:
-                        // todo see articles
+                        articleUtils.printAllArticles();
+                        articleUtils.findArticleByTitle();
                         break;
                     case 4:
                         break;
@@ -66,10 +68,13 @@ public class Menu {
                 // switch case of current panel
                 switch (chooser) {
                     case 1:
-                        // todo see articles
+                        articleUtils.printUserArticles(currentUser);
                         break;
                     case 2:
-                        articleUtils.editArticle(currentUser);
+                        articleUtils.printUserArticles(currentUser);
+                        Article uneditedArticle = articleUtils.findAnArticleFromUserArticles(currentUser);
+                        Article editedArticle = articleUtils.editAnArticle(uneditedArticle);
+                        articleService.updateArticle(editedArticle);
                         break;
                     case 3:
                         articleService.createArticle(currentUser);

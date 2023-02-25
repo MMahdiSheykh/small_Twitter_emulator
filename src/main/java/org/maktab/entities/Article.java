@@ -1,9 +1,6 @@
 package org.maktab.entities;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 
@@ -23,4 +20,15 @@ public class Article {
     boolean isPublished;
     @ManyToOne
     User user;
+
+    @Override
+    public String toString() {
+        return "\n" +
+                "Title : " + title + '\n' +
+                "Brief : " + brief + '\n' +
+                "Content : " + content + '\n' +
+                "CreatedDate : " + createdDate + '\n' +
+                "Author : " + user.getUsername() +
+                "\n";
+    }
 }

@@ -14,10 +14,10 @@ public class LoginAndSignupUtils {
     public User userLogin() {
 
         UserService userService = new UserService();
-        AtomicReference<User> user = new AtomicReference<>(new User());
+        AtomicReference<User> atomicUser = new AtomicReference<>(new User());
 
         while (true) {
-            System.out.print("Please enter your username\n--> ");
+            System.out.print("\nPlease enter your username\n--> ");
             String username = scanner.next();
             System.out.print("Please enter your password\n--> ");
             String password = scanner.next();
@@ -25,16 +25,17 @@ public class LoginAndSignupUtils {
             List<User> userList = userService.findAll();
 
             userList.forEach(x -> {
-                if (Objects.equals(x.getUsername(), username) && Objects.equals(x.getPassword(), password)) {
-                    user.set(x);
+                if (x.getUsername().equals(username) && x.getPassword().equals(password)) {
+                    atomicUser.set(x);
                 }
             });
 
-            if (user == null) {
-                System.out.println("\nyour username or password is incorrect...!\nTry again\n");
-                continue;
+            User user = atomicUser.getOpaque();
+
+            if (user.getUsername() == null) {
+                System.out.println("\nyour username or password is incorrect...!\nTry again");
             } else {
-                return user.getOpaque();
+                return user;
             }
         }
     }

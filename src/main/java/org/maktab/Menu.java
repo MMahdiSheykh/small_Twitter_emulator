@@ -56,7 +56,7 @@ public class Menu {
     }
 
     public void loginMenu(User user) {
-        System.out.println("Hi " + currentUser.getUsername() + "\nWelcome to your panel\n");
+        System.out.println("\nHi " + currentUser.getUsername() + "\nWelcome to your panel\n");
         System.out.println("1.See your articles\n2.Edite your articles\n3.Write a new article\n");
 
         while (true) {

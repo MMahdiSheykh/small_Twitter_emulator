@@ -82,25 +82,28 @@ public class ArticleUtils {
 
     public Article findAnArticleFromUserArticles(User user) {
         System.out.print("\nPlease enter the title of the article you want to edit\n--> ");
-        String title = scanner.next();
 
         List<Article> userArticles = findUserArticles(user);
         AtomicReference<Article> atomicArticle = new AtomicReference<>(new Article());
 
-        userArticles.forEach(x -> {
-            if (x.getTitle().equals(title)) {
-                atomicArticle.set(x);
+        while (true) {
+            String title = scanner.next();
+
+            userArticles.forEach(x -> {
+                if (x.getTitle().equals(title)) {
+                    atomicArticle.set(x);
+                }
+            });
+
+            Article article = atomicArticle.getOpaque();
+
+            if (article.getUser() != null) {
+                return article;
+            } else {
+                System.out.print("\nThis title does not exist!\nPlease try again\n--> ");
             }
-        });
-
-        Article article = atomicArticle.getOpaque();
-
-        if (article.getUser() != null) {
-            return article;
-        } else {
-            System.out.println("This title does not exist!");
+//            return null;
         }
-        return null;
     }
 
     public Article editAnArticle(Article article) {

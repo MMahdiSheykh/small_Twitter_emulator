@@ -41,26 +41,30 @@ public class ArticleUtils {
 
     public void findArticleByTitle() {
         System.out.print("\nPlease enter the title of the article you want\n--> ");
-        String title = scanner.next();
 
         List<Article> articleList = articleService.findAllArticles();
         Article article = new Article();
 
-        articleList.forEach(x -> {
-            if (x.getTitle().equals(title)) {
-                article.setId(x.getId());
-                article.setTitle(x.getTitle());
-                article.setBrief(x.getBrief());
-                article.setContent(x.getContent());
-                article.setCreatedDate(x.getCreatedDate());
-                article.setUser(x.getUser());
-            }
-        });
+        while (true) {
+            String title = scanner.next();
 
-        if (article.getTitle() != null) {
-            System.out.println(article.toString());
-        } else {
-            System.out.println("\nThe entered title does not exist!");
+            articleList.forEach(x -> {
+                if (x.getTitle().equals(title)) {
+                    article.setId(x.getId());
+                    article.setTitle(x.getTitle());
+                    article.setBrief(x.getBrief());
+                    article.setContent(x.getContent());
+                    article.setCreatedDate(x.getCreatedDate());
+                    article.setUser(x.getUser());
+                }
+            });
+
+            if (article.getTitle() != null) {
+                System.out.println(article.toString());
+                break;
+            } else {
+                System.out.print("\nThe entered title does not exist!\nPlease try again\n--> ");
+            }
         }
     }
 

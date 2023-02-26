@@ -3,6 +3,8 @@ package org.maktab.entities;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ public class Article {
     String title;
     String brief;
     String content;
-    String createdDate;
+    long createdDate;
     boolean isPublished;
     @ManyToOne
     User user;
@@ -27,7 +29,7 @@ public class Article {
                 "Title : " + title + '\n' +
                 "Brief : " + brief + '\n' +
                 "Content : " + content + '\n' +
-                "CreatedDate : " + createdDate + '\n' +
+                "CreatedDate : " + new SimpleDateFormat("dd/MM/yyyy").format(new Timestamp(createdDate)) + '\n' +
                 "Author : " + user.getUsername() +
                 "\n";
     }

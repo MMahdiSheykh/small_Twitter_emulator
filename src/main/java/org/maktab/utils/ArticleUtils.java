@@ -4,6 +4,7 @@ import org.maktab.entities.Article;
 import org.maktab.entities.User;
 import org.maktab.services.ArticleService;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -102,7 +103,6 @@ public class ArticleUtils {
             } else {
                 System.out.print("\nThis title does not exist!\nPlease try again\n--> ");
             }
-//            return null;
         }
     }
 
@@ -129,5 +129,11 @@ public class ArticleUtils {
                 break;
         }
         return article;
+    }
+
+    public long getCurrentTime(){
+        Timestamp timestampOfCurrentTime = new Timestamp(System.currentTimeMillis());
+        long longOfCurrentTime = timestampOfCurrentTime.getTime();
+        return longOfCurrentTime;
     }
 }

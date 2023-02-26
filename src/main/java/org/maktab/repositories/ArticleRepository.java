@@ -3,14 +3,12 @@ package org.maktab.repositories;
 import org.hibernate.Session;
 import org.maktab.dbConnection.DbConnection;
 import org.maktab.entities.Article;
-
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ArticleRepository {
 
 
-    public Article createArticle(Article article) {
+    public void createArticle(Article article) {
         Session session = null;
         try {
             session = DbConnection.buildSessionFactory().openSession();
@@ -25,7 +23,6 @@ public class ArticleRepository {
                 session.close();
             }
         }
-        return article;
     }
 
     public List<Article> findAllArticles() {
